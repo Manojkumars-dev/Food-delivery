@@ -1074,8 +1074,8 @@ export default function App() {
             ) : (
               <>
                 <div className="custom-scrollbar" style={{
-                  height: 'calc(100vh - 240px)',
-                  minHeight: '560px',
+                  height: 'calc(100vh - 160px)',
+                  minHeight: '640px',
                   overflowY: 'auto',
                 padding: '16px',
                 border: '1px solid var(--color-rule)',
