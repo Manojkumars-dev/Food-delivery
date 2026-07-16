@@ -859,126 +859,135 @@ export default function App() {
                 </button>
               </div>
             ) : (
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-                gap: 'var(--spacing-24)'
+              <div className="custom-scrollbar" style={{
+                maxHeight: '75vh',
+                overflowY: 'auto',
+                padding: '16px',
+                border: '1px solid var(--color-rule)',
+                borderRadius: '8px',
+                backgroundColor: 'rgba(252,255,247,0.5)'
               }}>
-                {filteredDishes.map((dish) => (
-                  <div key={dish.id} className="card-cream">
-                    {/* Item Image */}
-                    <div style={{
-                      position: 'relative',
-                      height: '180px',
-                      backgroundColor: 'var(--color-paper-white)',
-                      margin: '-24px -24px 16px -24px',
-                      borderBottom: '1px solid var(--color-rule)',
-                      overflow: 'hidden'
-                    }}>
-                      <img
-                        src={dish.image}
-                        alt={dish.name}
-                        style={{
-                          width: '100%',
-                          height: '100%',
-                          objectFit: 'cover'
-                        }}
-                      />
-                      {dish.famous && (
-                        <div style={{
-                          position: 'absolute',
-                          top: '12px',
-                          left: '12px'
-                        }}>
-                          <span className="pill-tag" style={{
-                            backgroundColor: 'var(--color-lime-sprint)',
-                            border: '1px solid var(--color-ink)',
-                            boxShadow: '1px 1px 0 0 #262626'
-                          }}>
-                            Legendary
-                          </span>
-                        </div>
-                      )}
-                      
-                      {/* Kannada / Local Tag Overlay */}
-                      {dish.tag && (
-                        <div style={{
-                          position: 'absolute',
-                          bottom: '12px',
-                          right: '12px'
-                        }}>
-                          <span className="pill-tag" style={{
-                            backgroundColor: 'var(--color-cream)',
-                            color: 'var(--color-ink)',
-                            border: '1px solid var(--color-ink)',
-                            fontSize: '10px',
-                            padding: '2px 8px'
-                          }}>
-                            {dish.tag}
-                          </span>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Restaurant tag */}
-                    <span style={{
-                      fontSize: '11px',
-                      fontWeight: 600,
-                      letterSpacing: '0.08em',
-                      color: 'var(--color-muted-gray)',
-                      textTransform: 'uppercase',
-                      marginBottom: '4px',
-                      display: 'block'
-                    }}>
-                      {dish.restaurant}
-                    </span>
-
-                    {/* Dish Name */}
-                    <h3 style={{
-                      fontSize: '18px',
-                      fontWeight: 600,
-                      color: 'var(--color-ink)',
-                      marginBottom: '8px',
-                      lineHeight: '1.2'
-                    }}>
-                      {dish.name}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-caption" style={{
-                      color: 'var(--color-muted)',
-                      flexGrow: 1,
-                      marginBottom: '16px'
-                    }}>
-                      {dish.description}
-                    </p>
-
-                    {/* Price and Cart Add button */}
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      borderTop: '1px solid var(--color-rule)',
-                      paddingTop: '16px',
-                      marginTop: 'auto'
-                    }}>
-                      <span style={{
-                        fontSize: '20px',
-                        fontWeight: 600,
-                        color: 'var(--color-ink)'
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                  gap: 'var(--spacing-24)'
+                }}>
+                  {filteredDishes.map((dish) => (
+                    <div key={dish.id} className="card-cream">
+                      {/* Item Image */}
+                      <div style={{
+                        position: 'relative',
+                        height: '180px',
+                        backgroundColor: 'var(--color-paper-white)',
+                        margin: '-24px -24px 16px -24px',
+                        borderBottom: '1px solid var(--color-rule)',
+                        overflow: 'hidden'
                       }}>
-                        ₹{dish.price}
+                        <img
+                          src={dish.image}
+                          alt={dish.name}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover'
+                          }}
+                        />
+                        {dish.famous && (
+                          <div style={{
+                            position: 'absolute',
+                            top: '12px',
+                            left: '12px'
+                          }}>
+                            <span className="pill-tag" style={{
+                              backgroundColor: 'var(--color-lime-sprint)',
+                              border: '1px solid var(--color-ink)',
+                              boxShadow: '1px 1px 0 0 #262626'
+                            }}>
+                              Legendary
+                            </span>
+                          </div>
+                        )}
+                        
+                        {/* Kannada / Local Tag Overlay */}
+                        {dish.tag && (
+                          <div style={{
+                            position: 'absolute',
+                            bottom: '12px',
+                            right: '12px'
+                          }}>
+                            <span className="pill-tag" style={{
+                              backgroundColor: 'var(--color-cream)',
+                              color: 'var(--color-ink)',
+                              border: '1px solid var(--color-ink)',
+                              fontSize: '10px',
+                              padding: '2px 8px'
+                            }}>
+                              {dish.tag}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Restaurant tag */}
+                      <span style={{
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        letterSpacing: '0.08em',
+                        color: 'var(--color-muted-gray)',
+                        textTransform: 'uppercase',
+                        marginBottom: '4px',
+                        display: 'block'
+                      }}>
+                        {dish.restaurant}
                       </span>
-                      <button
-                        onClick={() => addToCart(dish)}
-                        className="btn-lime"
-                        style={{ padding: '6px 12px', fontSize: '13px' }}
-                      >
-                        <Plus size={14} /> Add
-                      </button>
+
+                      {/* Dish Name */}
+                      <h3 style={{
+                        fontSize: '18px',
+                        fontWeight: 600,
+                        color: 'var(--color-ink)',
+                        marginBottom: '8px',
+                        lineHeight: '1.2'
+                      }}>
+                        {dish.name}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-caption" style={{
+                        color: 'var(--color-muted)',
+                        flexGrow: 1,
+                        marginBottom: '16px'
+                      }}>
+                        {dish.description}
+                      </p>
+
+                      {/* Price and Cart Add button */}
+                      <div style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        borderTop: '1px solid var(--color-rule)',
+                        paddingTop: '16px',
+                        marginTop: 'auto'
+                      }}>
+                        <span style={{
+                          fontSize: '20px',
+                          fontWeight: 600,
+                          color: 'var(--color-ink)'
+                        }}>
+                          ₹{dish.price}
+                        </span>
+                        <button
+                          onClick={() => addToCart(dish)}
+                          className="btn-lime"
+                          style={{ padding: '6px 12px', fontSize: '13px' }}
+                        >
+                          <Plus size={14} /> Add
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             )}
           </div>
