@@ -1679,7 +1679,78 @@ export default function App() {
             border: '2px solid var(--color-ink)',
             overflow: 'hidden'
           }}>
-            {checkoutStep === 'paying' ? (
+            {checkoutStep === 'details' ? (
+              <form onSubmit={triggerPayment} style={{ padding: '24px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--color-ink)', paddingBottom: '12px', marginBottom: '16px' }}>
+                  <h3 className="text-heading-sm" style={{ margin: 0 }}>Ooru Delivery Details</h3>
+                  <button type="button" onClick={() => setCheckoutStep('none')} style={{ border: 'none', background: 'transparent', cursor: 'pointer', color: 'var(--color-ink)' }}>
+                    <X size={20} />
+                  </button>
+                </div>
+
+                {/* Form fields */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '20px' }}>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '11px', fontWeight: 600, color: 'var(--color-muted-gray)', marginBottom: '4px' }}>FULL NAME</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Manoj Kumar"
+                      value={customerName}
+                      onChange={(e) => setCustomerName(e.target.value)}
+                      style={{ width: '100%', padding: '8px 12px', border: '1px solid var(--color-ink)', borderRadius: '4px', fontFamily: 'var(--font-geist)', fontSize: '14px' }}
+                    />
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '11px', fontWeight: 600, color: 'var(--color-muted-gray)', marginBottom: '4px' }}>MOBILE NUMBER</label>
+                      <input
+                        type="tel"
+                        required
+                        pattern="[0-9]{10}"
+                        placeholder="e.g. 9876543210"
+                        value={mobileNumber}
+                        onChange={(e) => setMobileNumber(e.target.value.replace(/\D/g, ''))}
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid var(--color-ink)', borderRadius: '4px', fontFamily: 'var(--font-geist)', fontSize: '14px' }}
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '11px', fontWeight: 600, color: 'var(--color-muted-gray)', marginBottom: '4px' }}>GMAIL ADDRESS</label>
+                      <input
+                        type="email"
+                        required
+                        placeholder="e.g. name@gmail.com"
+                        value={emailAddress}
+                        onChange={(e) => setEmailAddress(e.target.value)}
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid var(--color-ink)', borderRadius: '4px', fontFamily: 'var(--font-geist)', fontSize: '14px' }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Invoice Summary inside details box */}
+                <div style={{ backgroundColor: 'var(--color-cream)', border: '1px solid var(--color-ink)', padding: '16px', borderRadius: '4px', marginBottom: '20px' }}>
+                  <span style={{ fontSize: '11px', fontWeight: 600, color: 'var(--color-muted-gray)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>Ooru Invoice Summary</span>
+                  
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: '10px', fontSize: '13px' }}>
+                    {orderedItems.map(item => (
+                      <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span>{item.name} (x{item.qty})</span>
+                        <span>₹{item.price * item.qty}</span>
+                      </div>
+                    ))}
+                    <div style={{ borderTop: '1px dashed var(--color-rule)', marginTop: '6px', paddingTop: '6px', display: 'flex', justifyContent: 'space-between', fontWeight: 600 }}>
+                      <span>Total Amount:</span>
+                      <span>₹{orderedTotal}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" className="btn-lime" style={{ width: '100%', justifyContent: 'center', padding: '12px' }}>
+                  Generate Invoice & Pay (₹{orderedTotal})
+                </button>
+              </form>
+            ) : checkoutStep === 'paying' ? (
               <div style={{ padding: '48px 24px', textAlign: 'center' }}>
                 <div style={{
                   display: 'inline-block',
@@ -1723,17 +1794,32 @@ export default function App() {
                   fontSize: '14px',
                   marginBottom: '32px'
                 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                    <span style={{ color: 'var(--color-muted-gray)' }}>Order ID:</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', borderBottom: '1px solid var(--color-rule)', paddingBottom: '8px' }}>
+                    <span style={{ fontWeight: 600 }}>BILLING INVOICE</span>
                     <span style={{ fontFamily: 'monospace', fontWeight: 600 }}>#BF-89304-BLR</span>
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                    <span style={{ color: 'var(--color-muted-gray)' }}>Delivery To:</span>
-                    <span>{address}</span>
+
+                  {/* Customer details */}
+                  <div style={{ fontSize: '13px', margin: '8px 0', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <div><b>Name:</b> {customerName}</div>
+                    <div><b>Mobile:</b> {mobileNumber}</div>
+                    <div><b>Gmail:</b> {emailAddress}</div>
+                    <div><b>Address:</b> {address}</div>
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: 'var(--color-muted-gray)' }}>Delivery System:</span>
-                    <span>Ooru Express Bike</span>
+
+                  {/* Items list */}
+                  <div style={{ borderTop: '1px dashed var(--color-rule)', borderBottom: '1px dashed var(--color-rule)', padding: '8px 0', margin: '10px 0', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    {orderedItems.map(item => (
+                      <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
+                        <span>{item.name} × {item.qty}</span>
+                        <span>₹{item.price * item.qty}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600 }}>
+                    <span>Amount Paid:</span>
+                    <span>₹{orderedTotal}</span>
                   </div>
                 </div>
 
