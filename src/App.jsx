@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Search, MapPin, X, Plus, Minus, ArrowRight, Check, Receipt } from 'lucide-react';
 
 const FAMOUS_DISHES = [
@@ -296,6 +296,65 @@ const BANGALORE_PLACES = [
   'Whitefield, Bengaluru'
 ];
 
+const RESTAURANT_LOCATIONS = [
+  {
+    name: 'CTR (Shree Sagar)',
+    hub: 'Malleswaram',
+    founded: '1920s',
+    famous: 'Benne Masala Dosa',
+    lat: 12.9984,
+    lng: 77.5693
+  },
+  {
+    name: 'Vidyarthi Bhavan',
+    hub: 'Basavanagudi',
+    founded: '1943',
+    famous: 'VB Masala Dosa',
+    lat: 12.9610,
+    lng: 77.5738
+  },
+  {
+    name: 'MTR (Mavalli Tiffin Room)',
+    hub: 'Lalbagh Road',
+    founded: '1924',
+    famous: 'Rava Idli & Filter Coffee',
+    lat: 12.9568,
+    lng: 77.5867
+  },
+  {
+    name: 'Veena Stores',
+    hub: 'Malleswaram',
+    founded: '1977',
+    famous: 'Idli & Vada Combo',
+    lat: 12.9972,
+    lng: 77.5686
+  },
+  {
+    name: 'Brahmins Coffee Bar',
+    hub: 'Basavanagudi',
+    founded: '1965',
+    famous: 'Bonda Soup & Coffee',
+    lat: 12.9539,
+    lng: 77.5689
+  },
+  {
+    name: 'Hari Super Sandwich',
+    hub: 'Jayanagar',
+    founded: '1999',
+    famous: 'Chocolate Cheese Toast',
+    lat: 12.9272,
+    lng: 77.5855
+  },
+  {
+    name: 'Corner House',
+    hub: 'Indiranagar',
+    founded: '1982',
+    famous: 'Death by Chocolate (DBC)',
+    lat: 12.9784,
+    lng: 77.6408
+  }
+];
+
 export default function App() {
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -308,6 +367,56 @@ export default function App() {
   const [promoApplied, setPromoApplied] = useState(false);
   const [promoCode, setPromoCode] = useState('');
   const [logoStyle, setLogoStyle] = useState('token'); // 'claypot', 'dosa', 'token'
+  const [selectedMapRest, setSelectedMapRest] = useState(RESTAURANT_LOCATIONS[0]);
+
+  // Leaflet map setup for real-world OpenStreetMap integration
+  useEffect(() => {
+    if (!window.L) return;
+
+    // Check if mapInstance already exists to avoid duplicate init errors
+    if (window.mapInstance) {
+      window.mapInstance.remove();
+    }
+
+    // Centered in Central Bangalore
+    const map = window.L.map('map', {
+      center: [12.9716, 77.5946],
+      zoom: 12,
+      scrollWheelZoom: false
+    });
+
+    window.mapInstance = map;
+
+    // Load OpenStreetMap Tiles
+    window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Set markers for all iconic Bangalore restaurants
+    RESTAURANT_LOCATIONS.forEach((loc) => {
+      const marker = window.L.circleMarker([loc.lat, loc.lng], {
+        radius: 8,
+        fillColor: '#a3e635', // lime accent
+        color: '#262626',     // ink border
+        weight: 2.5,
+        opacity: 1,
+        fillOpacity: 0.95
+      }).addTo(map);
+
+      marker.bindPopup(`<b>${loc.name}</b><br>${loc.famous}`);
+
+      marker.on('click', () => {
+        setSelectedMapRest(loc);
+      });
+    });
+
+    return () => {
+      if (window.mapInstance) {
+        window.mapInstance.remove();
+        window.mapInstance = null;
+      }
+    };
+  }, []);
 
   // Cart operations
   const addToCart = (item) => {
@@ -860,7 +969,7 @@ export default function App() {
               </div>
             ) : (
               <div className="custom-scrollbar" style={{
-                maxHeight: '75vh',
+                maxHeight: '88vh',
                 overflowY: 'auto',
                 padding: '16px',
                 border: '1px solid var(--color-rule)',
@@ -993,6 +1102,127 @@ export default function App() {
           </div>
         </div>
       </main>
+
+      {/* Interactive Geographic Map of Bengaluru Heritage Eateries */}
+      <section style={{
+        marginTop: 'var(--spacing-80)',
+        borderTop: '1px solid var(--color-rule)',
+        paddingTop: 'var(--spacing-80)'
+      }}>
+        <div className="container">
+          <div style={{ marginBottom: 'var(--spacing-32)' }}>
+            <span className="pill-tag" style={{ marginBottom: '12px' }}>GEOGRAPHIC REGISTRY</span>
+            <h2 className="text-heading" style={{ textTransform: 'none' }}>
+              Bangalore's Heritage Eateries <span className="serif-italic">Map</span>
+            </h2>
+            <p className="text-body-sm" style={{ color: 'var(--color-muted-gray)', marginTop: '8px' }}>
+              Hover or click the highlighted tokens on our vector transit grid to view historical culinary landmarks and instantly filter their registry menu.
+            </p>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: 'var(--spacing-40)',
+            alignItems: 'start'
+          }}>
+            {/* Real World Leaflet Map Canvas */}
+            <div className="card-feature" style={{
+              backgroundColor: 'var(--color-paper-white)',
+              padding: '16px',
+              border: '2px solid var(--color-ink)',
+              position: 'relative',
+              zIndex: 1
+            }}>
+              <div id="map" style={{ 
+                height: '360px', 
+                width: '100%', 
+                borderRadius: '4px', 
+                border: '1px solid var(--color-ink)' 
+              }}></div>
+            </div>
+
+            {/* Selected Eatery Details Card */}
+            <div>
+              {selectedMapRest ? (
+                <div className="card-cream" style={{
+                  padding: '32px',
+                  border: '2px solid var(--color-ink)',
+                  boxShadow: '4px 4px 0px 0px var(--color-ink)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '16px',
+                  minHeight: '260px'
+                }}>
+                  <div style={{ borderBottom: '1px solid var(--color-ink)', paddingBottom: '12px' }}>
+                    <span className="pill-tag" style={{
+                      backgroundColor: 'var(--color-lime-sprint)',
+                      fontSize: '10px',
+                      padding: '2px 8px',
+                      marginBottom: '8px'
+                    }}>
+                      Established {selectedMapRest.founded}
+                    </span>
+                    <h3 style={{ fontSize: '22px', fontWeight: 600, color: 'var(--color-ink)', marginTop: '8px' }}>
+                      {selectedMapRest.name}
+                    </h3>
+                    <p style={{ fontSize: '13px', color: 'var(--color-muted-gray)', marginTop: '4px' }}>
+                      Hub: **{selectedMapRest.hub}**
+                    </p>
+                  </div>
+
+                  <div>
+                    <span style={{ fontSize: '11px', fontWeight: 600, color: 'var(--color-muted-gray)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Signature Delicacy</span>
+                    <p style={{ fontSize: '16px', fontWeight: 500, color: 'var(--color-ink)', marginTop: '4px' }}>
+                      ⭐ {selectedMapRest.famous}
+                    </p>
+                  </div>
+
+                  <div style={{ marginTop: 'auto', display: 'flex', gap: '12px' }}>
+                    <button
+                      onClick={() => {
+                        setSelectedRestaurant(selectedMapRest.name);
+                        const menuSection = document.getElementById('menu');
+                        if (menuSection) {
+                          menuSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}
+                      className="btn-lime"
+                      style={{ padding: '10px 16px', fontSize: '14px', flexGrow: 1, justifyContent: 'center' }}
+                    >
+                      Filter Registry Menu
+                    </button>
+                    <button
+                      onClick={() => setSelectedMapRest(null)}
+                      className="btn-outline"
+                      style={{ padding: '10px 14px', fontSize: '14px' }}
+                    >
+                      Clear
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="card-cream" style={{
+                  padding: '32px',
+                  border: '2px dashed var(--color-ink)',
+                  textAlign: 'center',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  minHeight: '260px'
+                }}>
+                  <MapPin size={32} style={{ color: 'var(--color-muted-gray)', marginBottom: '16px' }} />
+                  <h4 style={{ fontSize: '16px', fontWeight: 600 }}>No Landmark Selected</h4>
+                  <p style={{ fontSize: '13px', color: 'var(--color-muted-gray)', marginTop: '6px', maxWidth: '240px' }}>
+                    Click on any black transit node marker in the map to view historical credentials.
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Testimonial Quote Section */}
       <section style={{
