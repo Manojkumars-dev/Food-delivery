@@ -1,0 +1,425 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&family=Geist:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Colors */
+  --color-lime-sprint: #a3e635;
+  --color-paper-white: #ffffff;
+  --color-cream: #fcfff7;
+  --color-ink: #262626;
+  --color-black-ink: #000000;
+  --color-depth: #303030;
+  --color-rule: #e5e5e5;
+  --color-muted: #525252;
+  --color-muted-gray: #737373;
+  --color-mint-edge: #7ee2b8;
+  --color-mint-wash: #dcfff1;
+
+  /* Typography — Font Families */
+  --font-geist: 'Geist', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-fraunces: 'Fraunces', serif;
+
+  /* Typography — Scale & Leading */
+  --text-caption: 14px;
+  --leading-caption: 1.14;
+  
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.25;
+  
+  --text-body: 18px;
+  --leading-body: 1.55;
+  
+  --text-subheading: 20px;
+  --leading-subheading: 1.5;
+  
+  --text-heading-sm: 28px;
+  --leading-heading-sm: 1.14;
+  --tracking-heading-sm: -0.56px;
+  
+  --text-heading: 36px;
+  --leading-heading: 1.14;
+  --tracking-heading: -0.18px;
+  
+  --text-heading-lg: 48px;
+  --leading-heading-lg: 1.08;
+  --tracking-heading-lg: -0.96px;
+  
+  --text-display: 56px;
+  --leading-display: 1.16;
+  --tracking-display: -0.28px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-56: 56px;
+  --spacing-60: 60px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-120: 120px;
+  --spacing-156: 156px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 24px;
+  --element-gap: 8px;
+
+  /* Border Radii */
+  --radius-tags: 9999px;
+  --radius-cards: 8px;
+  --radius-pills: 9999px;
+  --radius-inputs: 4px;
+  --radius-buttons: 4px;
+
+  /* Shadows */
+  --shadow-subtle: rgb(38, 38, 38) -1px 0px 0px 0px, rgb(38, 38, 38) 0px -1px 0px 0px;
+  --shadow-subtle-2: rgb(38, 38, 38) 2px 2px 0px 0px;
+  --shadow-subtle-3: rgb(255, 255, 255) 2px 2px 0px 0px;
+
+  /* Surfaces */
+  --surface-paper-canvas: #ffffff;
+  --surface-cream-sheet: #fcfff7;
+  --surface-depth-block: #303030;
+  --surface-mint-pill: #dcfff1;
+}
+
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-geist);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--color-ink);
+  background-color: var(--surface-paper-canvas);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Typography styles */
+.text-display {
+  font-size: var(--text-display);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-black-ink);
+}
+
+.text-heading-lg {
+  font-size: var(--text-heading-lg);
+  line-height: var(--leading-heading-lg);
+  letter-spacing: var(--tracking-heading-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-black-ink);
+}
+
+.text-heading {
+  font-size: var(--text-heading);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-heading);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink);
+}
+
+.text-heading-sm {
+  font-size: var(--text-heading-sm);
+  line-height: var(--leading-heading-sm);
+  letter-spacing: var(--tracking-heading-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink);
+}
+
+.text-subheading {
+  font-size: var(--text-subheading);
+  line-height: var(--leading-subheading);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-muted);
+}
+
+.text-body {
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--color-muted);
+}
+
+.text-body-sm {
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-body-sm);
+  color: var(--color-muted);
+}
+
+.text-caption {
+  font-size: var(--text-caption);
+  line-height: var(--leading-caption);
+  color: var(--color-muted-gray);
+}
+
+/* The Signature Serif Italic pairings */
+.serif-italic {
+  font-family: var(--font-fraunces);
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Watermark Background */
+.topographic-bg {
+  background-image: radial-gradient(var(--color-rule) 1px, transparent 1px);
+  background-size: 24px 24px;
+  position: relative;
+}
+
+.topographic-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  /* Simulating continuous topographic watermark contours using nested gradients */
+  background-image: 
+    repeating-radial-gradient(circle at 50% 50%, transparent, transparent 40px, var(--color-ink) 41px, transparent 42px),
+    repeating-radial-gradient(circle at 10% 30%, transparent, transparent 60px, var(--color-ink) 61px, transparent 62px),
+    repeating-radial-gradient(circle at 90% 80%, transparent, transparent 80px, var(--color-ink) 81px, transparent 82px);
+  z-index: 0;
+}
+
+/* App Layout Grid Container */
+.container {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-24);
+  width: 100%;
+}
+
+/* Components CSS */
+
+/* 1. Lime Primary Button */
+.btn-lime {
+  background-color: var(--color-lime-sprint);
+  color: var(--color-ink);
+  font-family: var(--font-geist);
+  font-size: var(--text-body-sm);
+  font-weight: var(--font-weight-medium);
+  padding: 6px 14px;
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-buttons);
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  text-decoration: none;
+}
+
+.btn-lime:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-subtle-2);
+}
+
+.btn-lime:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+
+/* 2. Dark Block Button */
+.btn-dark-block {
+  background-color: var(--surface-depth-block);
+  color: var(--color-paper-white);
+  font-family: var(--font-geist);
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-medium);
+  padding: var(--spacing-24);
+  border: 1px solid var(--color-paper-white);
+  border-radius: 0px;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+
+.btn-dark-block:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-subtle-2);
+}
+
+.btn-dark-block:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+
+/* 3. Outlined Secondary Button */
+.btn-outline {
+  background-color: var(--color-paper-white);
+  color: var(--color-ink);
+  font-family: var(--font-geist);
+  font-size: var(--text-body-sm);
+  font-weight: var(--font-weight-medium);
+  padding: 8px 16px;
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-buttons);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.btn-outline:hover {
+  background-color: var(--color-cream);
+}
+
+/* 4. Ghost Link */
+.ghost-link {
+  background: transparent;
+  border: none;
+  color: var(--color-ink);
+  font-family: var(--font-geist);
+  font-size: var(--text-body-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: 0;
+}
+
+.ghost-link:hover {
+  text-decoration: underline;
+}
+
+/* 5. Cream Stat/Food Cards */
+.card-cream {
+  background-color: var(--surface-cream-sheet);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-cards);
+  padding: var(--spacing-24);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-cream:hover {
+  border-color: var(--color-ink);
+}
+
+/* Feature/Mockup Cards with Ink hard offset shadows */
+.card-feature {
+  background-color: var(--color-paper-white);
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-cards);
+  box-shadow: var(--shadow-subtle-2);
+  overflow: hidden;
+}
+
+/* Status Pill Badge */
+.status-pill {
+  background-color: var(--surface-mint-pill);
+  border: 1px solid var(--color-mint-edge);
+  border-radius: var(--radius-pills);
+  padding: 6px var(--spacing-12);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  font-size: var(--text-caption);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-ink);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-mint-edge);
+  border-radius: var(--radius-full);
+  display: inline-block;
+  animation: pulse-status 2s infinite ease-in-out;
+}
+
+@keyframes pulse-status {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Pill Tag */
+.pill-tag {
+  background-color: transparent;
+  color: var(--color-ink);
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-tags);
+  padding: 4px var(--spacing-12);
+  font-size: 12px;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Drawer / Sidebar Cart */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(38, 38, 38, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 100;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 480px;
+  background-color: var(--surface-paper-canvas);
+  border-left: 1px solid var(--color-ink);
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* Responsive spacing */
+@media (max-width: 768px) {
+  :root {
+    --text-display: 40px;
+    --text-heading-lg: 32px;
+    --text-heading: 28px;
+    --spacing-80: 48px;
+  }
+  .drawer {
+    max-width: 100%;
+  }
+}
