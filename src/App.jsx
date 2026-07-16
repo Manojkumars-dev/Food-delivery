@@ -355,6 +355,82 @@ const RESTAURANT_LOCATIONS = [
   }
 ];
 
+const BANGALORE_TRIVIA = [
+  {
+    english: "MTR invented the Rava Idli during World War II when rice was in short supply, substituting semolina instead.",
+    kannada: "ದ್ವಿತೀಯ ಮಹಾಯುದ್ಧದ ಸಮಯದಲ್ಲಿ ಅಕ್ಕಿಯ ಕೊರತೆಯಿದ್ದಾಗ, ಎಂಟಿಆರ್ ರವೆಯನ್ನು ಬಳಸಿ ರವಾ ಇಡ್ಲಿಯನ್ನು ಸಂಶೋಧಿಸಿತು."
+  },
+  {
+    english: "CTR (Shree Sagar) has been serving its signature golden, butter-laden Benne Masala Dosa in Malleswaram since the 1920s.",
+    kannada: "ಸಿಟಿಆರ್ (ಶ್ರೀ ಸಾಗರ್) ೧೯೨೦ರ ದಶಕದಿಂದಲೂ ಮಲ್ಲೇಶ್ವರಂನಲ್ಲಿ ತನ್ನ ಪ್ರಸಿದ್ಧ ಬೆಣ್ಣೆ ಮಸಾಲೆ ದೋಸೆಯನ್ನು ಬಡಿಸುತ್ತಿದೆ."
+  },
+  {
+    english: "Vidyarthi Bhavan was started in 1943 primarily as an eatery for students of National High School in Basavanagudi.",
+    kannada: "ವಿದ್ಯಾರ್ಥಿ ಭವನವನ್ನು ೧೯೪೩ ರಲ್ಲಿ ಮುಖ್ಯವಾಗಿ ಬಸವನಗುಡಿಯ ನ್ಯಾಷನಲ್ ಹೈಸ್ಕೂಲ್ ವಿದ್ಯಾರ್ಥಿಗಳಿಗಾಗಿ ಪ್ರಾರಂಭಿಸಲಾಯಿತು."
+  },
+  {
+    english: "The name 'Corner House' in Bangalore is synonymous with 'Death by Chocolate' (DBC), a legendary ice cream sundae loved since 1982.",
+    kannada: "ಬೆಂಗಳೂರಿನಲ್ಲಿ 'ಕಾರ್ನರ್ ಹೌಸ್' ಹೆಸರು ೧೯೮೨ ರಿಂದಲೂ ಎಲ್ಲರ ಅಚ್ಚುಮೆಚ್ಚಿನ 'ಡೆತ್ ಬೈ ಚಾಕೊಲೇಟ್' (DBC) ಐಸ್ ಕ್ರೀಮ್ ಸುಂದೆಗೆ ಹೆಸರುವಾಸಿಯಾಗಿದೆ."
+  },
+  {
+    english: "Brahmins Coffee Bar in Shankarpuram serves only coffee, idli, vada, and khara bhath—no dosas are ever on the menu!",
+    kannada: "ಶಂಕರಪುರಂನ ಬ್ರಾಹ್ಮಿನ್ಸ್ ಕಾಫಿ ಬಾರ್‌ನಲ್ಲಿ ಕಾಫಿ, ಇಡ್ಲಿ, ವಡೆ ಮತ್ತು ಖಾರಾ ಬಾತ್ ಮಾತ್ರ ಸಿಗುತ್ತದೆ—ದೋಸೆಗಳು ಮೆನುವಿನಲ್ಲಿ ಇಲ್ಲವೇ ಇಲ್ಲ!"
+  },
+  {
+    english: "VV Puram Thindi Beedi (Food Street) comes alive after 6 PM, serving authentic local treats like Gulbarga bhath and floating Rasgulla.",
+    kannada: "ವಿವಿ ಪುರಂನ ತಿಂಡಿ ಬೀದಿ ಸಂಜೆ ೬ ಗಂಟೆಯ ನಂತರ ಕಾರ್ಯನಿರತವಾಗುತ್ತದೆ, ಇಲ್ಲಿ ಗುಲ್ಬರ್ಗಾ ಬಾತ್ ಮತ್ತು ತೇಲುವ ರಸಗುಲ್ಲಾಗಳು ಪ್ರಸಿದ್ಧವಾಗಿವೆ."
+  },
+  {
+    english: "CTR dosas are traditionally served in high stacks of three or four, balanced on a single arm by legendary waiters.",
+    kannada: "ಸಿಟಿಆರ್ ದೋಸೆಗಳನ್ನು ಸಾಂಪ್ರದಾಯಿಕವಾಗಿ ಮೂರು ಅಥವಾ ನಾಲ್ಕು ದೋಸೆಗಳ ದೊಡ್ಡ ಕಂತೆಗಳಲ್ಲಿ ನುರಿತ ವೇಟರ್‌ಗಳು ಒಂದೇ ಕೈಯಲ್ಲಿ ಬ್ಯಾಲೆನ್ಸ್ ಮಾಡಿ ತರುತ್ತಾರೆ."
+  },
+  {
+    english: "The iconic VB Bakery in VV Puram was founded in 1953 by K.S. Thirumalachar, serving legendary Congress Buns and Honey Cakes.",
+    kannada: "ವಿವಿ ಪುರಂನ ವಿಬಿ ಬೇಕರಿಯನ್ನು ೧೯೫೩ ರಲ್ಲಿ ಕೆ.ಎಸ್. ತಿರುಮಲಾಚಾರ್ ಸ್ಥಾಪಿಸಿದರು, ಇಲ್ಲಿ ಕಾಂಗ್ರೆಸ್ ಬನ್ ಮತ್ತು ಹನಿ ಕೇಕ್ ಪ್ರಸಿದ್ಧವಾಗಿವೆ."
+  },
+  {
+    english: "Arogya Ahaara in JP Nagar serves clean, organic, and highly nutritious South Indian breakfast classics with pure ghee.",
+    kannada: "ಜೆಪಿ ನಗರದ ಆರೋಗ್ಯ ಆಹಾರವು ಶುದ್ಧ ತುಪ್ಪದೊಂದಿಗೆ ಸಾವಯವ ಮತ್ತು ಪೌಷ್ಟಿಕಾಂಶವುಳ್ಳ ದಕ್ಷಿಣ ಭಾರತದ ಉಪಾಹಾರವನ್ನು ನೀಡುತ್ತದೆ."
+  },
+  {
+    english: "Veena Stores in Malleswaram started as a small condiment shop in 1977 before becoming famous for its piping hot, soft idlis.",
+    kannada: "ಮಲ್ಲೇಶ್ವರಂನ ವೀಣಾ ಸ್ಟೋರ್ಸ್ ೧೯೭೭ ರಲ್ಲಿ ಸಣ್ಣ ಮಸಾಲೆ ಅಂಗಡಿಯಾಗಿ ಪ್ರಾರಂಭವಾಗಿ, ನಂತರ ಮೃದುವಾದ ಇಡ್ಲಿಗಳಿಗೆ ಪ್ರಸಿದ್ಧವಾಯಿತು."
+  },
+  {
+    english: "Traditional Bangalore Filter Coffee is brewed using chicory-blended coffee grounds in a brass decoction dripper.",
+    kannada: "ಸಾಂಪ್ರದಾಯಿಕ ಬೆಂಗಳೂರು ಫಿಲ್ಟರ್ ಕಾಫಿಯನ್ನು ಹಿತ್ತಾಳೆ ಪಾತ್ರೆಯಲ್ಲಿ ಡಿಕಾಕ್ಷನ್ ಬಳಸಿ ತಯಾರಿಸಲಾಗುತ್ತದೆ."
+  },
+  {
+    english: "A custom bread toast called 'Hari Super Sandwich' became a Jayanagar craze with its unique chocolate cheese sandwiches.",
+    kannada: "ಜಯನಗರದಲ್ಲಿ 'ಹರಿ ಸೂಪರ್ ಸ್ಯಾಂಡ್‌ವಿಚ್' ತನ್ನ ವಿಶಿಷ್ಟ ಚಾಕೊಲೇಟ್ ಚೀಸ್ ಸ್ಯಾಂಡ್‌ವಿಚ್‌ಗಳಿಂದ ಅತ್ಯಂತ ಜನಪ್ರಿಯವಾಗಿದೆ."
+  },
+  {
+    english: "Thatte Idli gets its name from the flat, plate-like clay dish ('thatte') in which it is steamed, originating from Bidadi.",
+    kannada: "ತಟ್ಟೆ ಇಡ್ಲಿಗೆ ಬಿಡದಿಯಲ್ಲಿ ಮಣ್ಣಿನ ತಟ್ಟೆಯಲ್ಲಿ ಹಬೆಯಾಡಿಸಿ ತಯಾರಿಸುವುದರಿಂದ ಈ ಹೆಸರು ಬಂದಿದೆ."
+  },
+  {
+    english: "MTR was originally named 'Brahmin Coffee Club' when it was founded by Yajnanarayana Maiya in 1924.",
+    kannada: "ಎಂ‌ಟಿಆರ್ ಅನ್ನು ೧೯೨೪ ರಲ್ಲಿ ಯಜ್ಞನಾರಾಯಣ ಮಯ್ಯ ಸ್ಥಾಪಿಸಿದಾಗ ಮೂಲತಃ 'ಬ್ರಾಹ್ಮಿನ್ ಕಾಫಿ ಕ್ಲಬ್' ಎಂದು ಹೆಸರಿಸಲಾಗಿತ್ತು."
+  },
+  {
+    english: "Congress Bun gets its unique name because it was popularised during the political rallies of the Indian National Congress party in the 1960s.",
+    kannada: "ಕಾಂಗ್ರೆಸ್ ಬನ್‌ಗೆ ಈ ಹೆಸರು ಬಂದಿದ್ದು ೧೯೬೦ ರ ದಶಕದಲ್ಲಿ ಕಾಂಗ್ರೆಸ್ ಪಕ್ಷದ ರಾಜಕೀಯ ರ‍್ಯಾಲಿಗಳಲ್ಲಿ ಇದು ಹೆಚ್ಚು ಪ್ರಸಿದ್ಧಿಯಾದ ಕಾರಣದಿಂದ."
+  }
+];
+
+const BANGALORE_PROVERBS = [
+  { kannada: "ಊಟ ಬಲ್ಲವನಿಗೆ ರೋಗವಿಲ್ಲ, ಮಾತು ಬಲ್ಲವನಿಗೆ ಜಗಳವಿಲ್ಲ.", meaning: "He who knows how to eat healthy knows no illness; he who knows how to speak knows no quarrels." },
+  { kannada: "ಉಪ್ಪಿಗಿಂತ ರುಚಿ ಬೇರೆ ಇಲ್ಲ, ತಾಯಿಗಿಂತ ಬಂಧು ಬೇರೆ ಇಲ್ಲ.", meaning: "There is no taste superior to salt; there is no relative closer than a mother." },
+  { kannada: "ಊಟ ತನ್ನಿಚ್ಛೆ, ನೋಟ ಪರರಿಚ್ಛೆ.", meaning: "Eat food according to your own taste, but dress to please others." },
+  { kannada: "ಕೈ ಕೆಸರಾದರೆ ಬಾಯಿ ಮೊಸರು.", meaning: "When your hands work hard in the mud, your mouth tastes curd (hard work yields sweet results)." },
+  { kannada: "ಬಿಸಿ ಬಿಸಿ ರೊಟ್ಟಿ, ತುಪ್ಪದ ಬಟ್ಟಲು - ಸ್ವರ್ಗಕ್ಕೆ ಸಮಾನ.", meaning: "Piping hot bhakri roti with a bowl of pure ghee is equivalent to heaven." },
+  { kannada: "ಅನ್ನದಾತ ಸುಖೀಭವ.", meaning: "May the one who provides food always remain happy and blessed." },
+  { kannada: "ಅತಿ ಆಸೆ ಗತಿ ಗೇಡು, ಅತಿ ಊಟ ಹೊಟ್ಟೆಗೆ ಕೇಡು.", meaning: "Too much greed leads to ruin; overeating leads to stomach ache." },
+  { kannada: "ಹಸಿದವನಿಗೆ ಹಿಟ್ಟು ನೀಡು, ದಣಿದವನಿಗೆ ನೀರು ನೀಡು.", meaning: "Provide food to the hungry and water to the tired." },
+  { kannada: "ಕಷ್ಟಪಟ್ಟು ಸಂಪಾದಿಸಿದ ಊಟವೇ ಅತ್ಯಂತ ಸಿಹಿ.", meaning: "The food earned through one's own hard work is the sweetest of all." },
+  { kannada: "ಊಟ ಮುಗಿಸಿ ವಾಯುವಿಹಾರ ಮಾಡು, ನೂರು ವರ್ಷ ಸುಖವಾಗಿ ಬಾಳು.", meaning: "Walk after dinner, and live a long, healthy, and happy life." }
+];
+
 export default function App() {
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -368,6 +444,34 @@ export default function App() {
   const [promoCode, setPromoCode] = useState('');
   const [logoStyle, setLogoStyle] = useState('token'); // 'claypot', 'dosa', 'token'
   const [selectedMapRest, setSelectedMapRest] = useState(RESTAURANT_LOCATIONS[0]);
+  const [triviaIndex, setTriviaIndex] = useState(0);
+  const [fade, setFade] = useState(true);
+  const [proverbIndex, setProverbIndex] = useState(0);
+  const [proverbFade, setProverbFade] = useState(true);
+
+  // Rotating Trivia Feed Logic
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false);
+      setTimeout(() => {
+        setTriviaIndex((prev) => (prev + 1) % BANGALORE_TRIVIA.length);
+        setFade(true);
+      }, 300);
+    }, 7000); // changes every 7 seconds
+    return () => clearInterval(interval);
+  }, []);
+
+  // Rotating Proverbs Feed Logic
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProverbFade(false);
+      setTimeout(() => {
+        setProverbIndex((prev) => (prev + 1) % BANGALORE_PROVERBS.length);
+        setProverbFade(true);
+      }, 300);
+    }, 9000); // changes every 9 seconds
+    return () => clearInterval(interval);
+  }, []);
 
   // Leaflet map setup for real-world OpenStreetMap integration
   useEffect(() => {
@@ -968,9 +1072,11 @@ export default function App() {
                 </button>
               </div>
             ) : (
-              <div className="custom-scrollbar" style={{
-                maxHeight: '88vh',
-                overflowY: 'auto',
+              <>
+                <div className="custom-scrollbar" style={{
+                  height: 'calc(100vh - 240px)',
+                  minHeight: '560px',
+                  overflowY: 'auto',
                 padding: '16px',
                 border: '1px solid var(--color-rule)',
                 borderRadius: '8px',
@@ -1098,7 +1204,111 @@ export default function App() {
                   ))}
                 </div>
               </div>
-            )}
+
+              {/* Vertically Stacked Info Panels to completely fill the bottom void */}
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '16px',
+                marginTop: '20px'
+              }}>
+                {/* Panel 1: Bengaluru Food Trivia Widget (Bilingual) */}
+                <div className="card-cream" style={{
+                  padding: '20px 24px',
+                  border: '1px solid var(--color-ink)',
+                  borderLeft: '4px solid var(--color-lime-sprint)',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  minHeight: '120px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  boxShadow: '4px 4px 0px 0px var(--color-ink)'
+                }}>
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                      <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.08em', color: 'var(--color-ink)' }}>NAMMA BLR TRIVIA 📰</span>
+                      <span style={{ fontSize: '10px', fontWeight: 500, color: 'var(--color-muted-gray)' }}>{triviaIndex + 1}/15</span>
+                    </div>
+                    <h4 style={{
+                      fontSize: '15px',
+                      fontWeight: 600,
+                      color: 'var(--color-ink)',
+                      margin: '4px 0',
+                      opacity: fade ? 1 : 0,
+                      transition: 'opacity 0.3s ease-in-out'
+                    }}>
+                      "{BANGALORE_TRIVIA[triviaIndex].kannada}"
+                    </h4>
+                    <p style={{
+                      fontSize: '13px',
+                      lineHeight: '1.45',
+                      color: 'var(--color-muted-gray)',
+                      opacity: fade ? 1 : 0,
+                      transition: 'opacity 0.3s ease-in-out',
+                      margin: '6px 0 0',
+                      fontStyle: 'italic'
+                    }}>
+                      English: {BANGALORE_TRIVIA[triviaIndex].english}
+                    </p>
+                  </div>
+                  <div style={{ display: 'flex', gap: '4px', marginTop: '12px' }}>
+                    {BANGALORE_TRIVIA.map((_, idx) => (
+                      <div key={idx} style={{
+                        height: '3px',
+                        flexGrow: 1,
+                        backgroundColor: idx === triviaIndex ? 'var(--color-lime-sprint)' : 'var(--color-rule)',
+                        borderRadius: '1px',
+                        transition: 'background-color 0.3s ease'
+                      }}></div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Panel 2: Kannada Food Proverbs Widget */}
+                <div className="card-cream" style={{
+                  padding: '20px 24px',
+                  border: '1px solid var(--color-ink)',
+                  borderLeft: '4px solid var(--color-lime-sprint)',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  minHeight: '120px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  boxShadow: '4px 4px 0px 0px var(--color-ink)'
+                }}>
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                      <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.08em', color: 'var(--color-ink)' }}>KANNADA FOOD PROVERB 📜</span>
+                      <span style={{ fontSize: '10px', fontWeight: 500, color: 'var(--color-muted-gray)' }}>{proverbIndex + 1}/10</span>
+                    </div>
+                    <h4 style={{
+                      fontSize: '15px',
+                      fontWeight: 600,
+                      color: 'var(--color-ink)',
+                      margin: '4px 0',
+                      opacity: proverbFade ? 1 : 0,
+                      transition: 'opacity 0.3s ease-in-out'
+                    }}>
+                      "{BANGALORE_PROVERBS[proverbIndex].kannada}"
+                    </h4>
+                    <p style={{
+                      fontSize: '13px',
+                      lineHeight: '1.4',
+                      color: 'var(--color-muted-gray)',
+                      opacity: proverbFade ? 1 : 0,
+                      transition: 'opacity 0.3s ease-in-out',
+                      margin: '6px 0 0',
+                      fontStyle: 'italic'
+                    }}>
+                      Meaning: {BANGALORE_PROVERBS[proverbIndex].meaning}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
           </div>
         </div>
       </main>
