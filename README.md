@@ -1,16 +1,58 @@
-# React + Vite
+# 🍲 Sakkat Oota — Namma Bengaluru Food Registry
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A minimalist, premium editorial broadsheet registry application bringing the legendary flavors of Bengaluru straight to your screen. Built with a paper-and-ink aesthetic inspired by classic newsprints, featuring vibrant highlighter-lime highlights, bold offsets, and hard ink borders.
 
-Currently, two official plugins are available:
+## 🔗 Developer Credits
+Created and maintained by **Manoj Kumar S**:
+*   **GitHub:** [@Manojkumars-dev](https://github.com/Manojkumars-dev)
+*   **LinkedIn:** [manojkumars-dev](https://www.linkedin.com/in/manojkumars-dev/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Core Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+*   **24 Authentic Bengaluru Dishes:** Curated catalog sourced from iconic culinary spots like *CTR (Shree Sagar), MTR (Mavalli Tiffin Room), Vidyarthi Bhavan, Brahmins Coffee Bar, Veena Stores, Hari Super Sandwich, and Corner House*.
+*   **Interactive Logo Switcher:** Choose your favorite brand mark directly in the header:
+    *   *Steaming Clay Pot* (Minimal hot food icon)
+    *   *Ghee Dosa Swirl* (Spiral line-art dosa with melting butter)
+    *   *Kannada Heritage Token* (Classic Darshini style brass token enclosing "ಊಟ")
+*   **Kannada Copy & Localization:** Bilingual headers, local subtitles, and category button listings.
+*   **Invoice-Style Invoice Cart:** Real-time billing calculates subtotal, GST, local delivery fees, and accepts local discount codes (like `SAKKAT` or `OORU15`).
+*   **Chained Scroll Viewport:** Catalog listing behaves as a custom-scrollbar viewport, transitioning scroll events dynamically once bounds are reached.
+*   **OoruPay Gateway:** Integrated checkout mock banking animation resulting in finalized order tickets.
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## 🛠️ Tech Stack
+*   **Core:** React (Functional components, hooks)
+*   **Build Tooling:** Vite
+*   **Styling:** Custom CSS Custom Properties (Design tokens)
+*   **Icons:** Lucide React
+
+---
+
+## 🚀 Setup & Installation
+
+Follow these steps to run the project locally:
+
+1.  **Clone the Repository:**
+    ```bash
+    git clone https://github.com/Manojkumars-dev/Food-delivery.git
+    cd Food-delivery
+    ```
+
+2.  **Install Dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Run Development Server:**
+    ```bash
+    npm run dev
+    ```
+    Open `http://localhost:5173` in your browser.
+
+4.  **Build for Production:**
+    ```bash
+    npm run build
+    ```
