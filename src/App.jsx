@@ -456,6 +456,10 @@ export default function App() {
   const [orderedItems, setOrderedItems] = useState([]);
   const [orderedTotal, setOrderedTotal] = useState(0);
   const [orderedPromo, setOrderedPromo] = useState(false);
+  const [orderedSubtotal, setOrderedSubtotal] = useState(0);
+  const [orderedDelivery, setOrderedDelivery] = useState(0);
+  const [orderedGST, setOrderedGST] = useState(0);
+  const [orderedDiscount, setOrderedDiscount] = useState(0);
 
   // Helper functions to group origins of ordered dishes
   const getRestaurantHub = (restaurantName) => {
@@ -592,6 +596,10 @@ export default function App() {
   const handleCheckout = () => {
     // Cache the cart details to render on the invoice
     setOrderedItems([...cart]);
+    setOrderedSubtotal(getSubtotal());
+    setOrderedDelivery(getDeliveryFee());
+    setOrderedGST(getGST());
+    setOrderedDiscount(getPromoDiscount());
     setOrderedTotal(getTotal());
     setOrderedPromo(promoApplied);
     // Open the customer details modal
@@ -1808,12 +1816,35 @@ export default function App() {
 
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '13px' }}>
                     {orderedItems.map(item => (
-                      <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--color-muted-gray)' }}>
                         <span>{item.name} (x{item.qty})</span>
                         <span>₹{item.price * item.qty}</span>
                       </div>
                     ))}
-                    <div style={{ borderTop: '1px dashed var(--color-rule)', marginTop: '6px', paddingTop: '6px', display: 'flex', justifyContent: 'space-between', fontWeight: 600 }}>
+                    
+                    {/* Delivery Fee, GST, and Discount Breakdown */}
+                    <div style={{ borderTop: '1px dashed var(--color-rule)', marginTop: '6px', paddingTop: '6px', display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '12px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span>Subtotal:</span>
+                        <span>₹{orderedSubtotal}</span>
+                      </div>
+                      {orderedDiscount > 0 && (
+                        <div style={{ display: 'flex', justifyContent: 'space-between', color: 'green' }}>
+                          <span>Promo Discount:</span>
+                          <span>-₹{orderedDiscount}</span>
+                        </div>
+                      )}
+                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span>GST (5%):</span>
+                        <span>₹{orderedGST}</span>
+                      </div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span>Delivery Fee:</span>
+                        <span>₹{orderedDelivery}</span>
+                      </div>
+                    </div>
+
+                    <div style={{ borderTop: '1px solid var(--color-ink)', marginTop: '4px', paddingTop: '6px', display: 'flex', justifyContent: 'space-between', fontWeight: 600, fontSize: '14px' }}>
                       <span>Total Amount:</span>
                       <span>₹{orderedTotal}</span>
                     </div>
@@ -1893,13 +1924,35 @@ export default function App() {
                   </div>
 
                   {/* Items list */}
-                  <div style={{ borderTop: '1px dashed var(--color-rule)', borderBottom: '1px dashed var(--color-rule)', padding: '8px 0', margin: '10px 0', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                  <div style={{ borderTop: '1px dashed var(--color-rule)', padding: '8px 0', marginTop: '10px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
                     {orderedItems.map(item => (
-                      <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
+                      <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: 'var(--color-muted-gray)' }}>
                         <span>{item.name} × {item.qty}</span>
                         <span>₹{item.price * item.qty}</span>
                       </div>
                     ))}
+                  </div>
+
+                  {/* Delivery Charges & Tax breakdown */}
+                  <div style={{ borderTop: '1px dashed var(--color-rule)', borderBottom: '1px dashed var(--color-rule)', padding: '6px 0', marginBottom: '10px', display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '12px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <span>Subtotal:</span>
+                      <span>₹{orderedSubtotal}</span>
+                    </div>
+                    {orderedDiscount > 0 && (
+                      <div style={{ display: 'flex', justifyContent: 'space-between', color: 'green' }}>
+                        <span>Discount:</span>
+                        <span>-₹{orderedDiscount}</span>
+                      </div>
+                    )}
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <span>GST (5%):</span>
+                      <span>₹{orderedGST}</span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <span>Delivery Fee:</span>
+                      <span>₹{orderedDelivery}</span>
+                    </div>
                   </div>
 
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600 }}>
