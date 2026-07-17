@@ -449,6 +449,14 @@ export default function App() {
   const [proverbIndex, setProverbIndex] = useState(0);
   const [proverbFade, setProverbFade] = useState(true);
 
+  // Invoice & Customer Detail inputs
+  const [mobileNumber, setMobileNumber] = useState('');
+  const [emailAddress, setEmailAddress] = useState('');
+  const [customerName, setCustomerName] = useState('');
+  const [orderedItems, setOrderedItems] = useState([]);
+  const [orderedTotal, setOrderedTotal] = useState(0);
+  const [orderedPromo, setOrderedPromo] = useState(false);
+
   // Rotating Trivia Feed Logic
   useEffect(() => {
     const interval = setInterval(() => {
@@ -563,11 +571,36 @@ export default function App() {
   };
 
   const handleCheckout = () => {
+    // Cache the cart details to render on the invoice
+    setOrderedItems([...cart]);
+    setOrderedTotal(getTotal());
+    setOrderedPromo(promoApplied);
+    // Open the customer details modal
+    setCheckoutStep('details');
+  };
+
+  const triggerPayment = (e) => {
+    e.preventDefault();
+    if (!mobileNumber || !emailAddress) {
+      alert('Please fill out your contact details to generate the invoice.');
+      return;
+    }
+    // Verify email ends with @gmail.com or is valid format
+    if (!emailAddress.toLowerCase().endsWith('@gmail.com')) {
+      alert('Please enter a valid Gmail address (ending in @gmail.com).');
+      return;
+    }
+    // Verify mobile number is 10 digits
+    if (!/^\d{10}$/.test(mobileNumber)) {
+      alert('Please enter a valid 10-digit mobile number.');
+      return;
+    }
     setCheckoutStep('paying');
     setTimeout(() => {
       setCheckoutStep('success');
       setCart([]);
-    }, 1500);
+      setIsCartOpen(false);
+    }, 1800);
   };
 
   // Filtered dishes
