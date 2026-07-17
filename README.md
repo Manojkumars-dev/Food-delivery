@@ -1,5 +1,7 @@
 # 🍲 Sakkat Oota — Namma Bengaluru Food Registry
 
+### 🔗 Live Deployment: [food-delivery017.vercel.app](https://food-delivery017.vercel.app)
+
 A minimalist, premium editorial broadsheet registry application bringing the legendary flavors of Bengaluru straight to your screen. Built with a paper-and-ink aesthetic inspired by classic newsprints, featuring vibrant highlighter-lime highlights, bold offsets, and hard ink borders.
 
 ## 🔗 Developer Credits
