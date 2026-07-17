@@ -431,6 +431,43 @@ const BANGALORE_PROVERBS = [
   { kannada: "ಊಟ ಮುಗಿಸಿ ವಾಯುವಿಹಾರ ಮಾಡು, ನೂರು ವರ್ಷ ಸುಖವಾಗಿ ಬಾಳು.", meaning: "Walk after dinner, and live a long, healthy, and happy life." }
 ];
 
+const LAYOUT_COORDINATES = {
+  malleswaram: [12.9984, 77.5693],
+  basavanagudi: [12.9610, 77.5738],
+  indiranagar: [12.9784, 77.6408],
+  koramangala: [12.9279, 77.6271],
+  jayanagar: [12.9272, 77.5855],
+  sadashivanagar: [13.0068, 77.5802],
+  whitefield: [12.9698, 77.7500],
+  'mg road': [12.9740, 77.6085],
+  central: [12.9716, 77.5946]
+};
+
+const calculateDistance = (lat1, lon1, lat2, lon2) => {
+  const R = 6371; // Earth radius in km
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * Math.PI / 180) *
+      Math.cos(lat2 * Math.PI / 180) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const d = R * c;
+  return Math.round(d * 10) / 10; // round to 1 decimal place
+};
+
+const getDropCoordinates = (addressText) => {
+  const addr = addressText.toLowerCase();
+  for (const [key, coords] of Object.entries(LAYOUT_COORDINATES)) {
+    if (addr.includes(key)) {
+      return coords;
+    }
+  }
+  return LAYOUT_COORDINATES.central;
+};
+
 export default function App() {
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -460,6 +497,7 @@ export default function App() {
   const [orderedDelivery, setOrderedDelivery] = useState(0);
   const [orderedGST, setOrderedGST] = useState(0);
   const [orderedDiscount, setOrderedDiscount] = useState(0);
+  const [orderedDistance, setOrderedDistance] = useState(0);
 
   // Helper functions to group origins of ordered dishes
   const getRestaurantHub = (restaurantName) => {
@@ -578,9 +616,40 @@ export default function App() {
     });
   };
 
+  const getCartMaxDistance = () => {
+    if (cart.length === 0) return 0;
+    const dropCoords = getDropCoordinates(address);
+    let maxDistance = 0;
+    cart.forEach((item) => {
+      const restLoc = RESTAURANT_LOCATIONS.find(
+        (r) =>
+          r.name.toLowerCase().includes(item.restaurant.toLowerCase()) ||
+          item.restaurant.toLowerCase().includes(r.name.toLowerCase())
+      );
+      if (restLoc) {
+        const dist = calculateDistance(restLoc.lat, restLoc.lng, dropCoords[0], dropCoords[1]);
+        if (dist > maxDistance) {
+          maxDistance = dist;
+        }
+      }
+    });
+    return maxDistance;
+  };
+
   const getSubtotal = () => cart.reduce((sum, item) => sum + item.price * item.qty, 0);
   const getGST = () => Math.round(getSubtotal() * 0.05);
-  const getDeliveryFee = () => (getSubtotal() > 0 ? 40 : 0);
+  
+  const getDeliveryFee = () => {
+    const maxDist = getCartMaxDistance();
+    if (maxDist === 0) return 0;
+    // Bangalore market rate: ₹35 base for first 3 km, ₹10 per km onwards
+    let fee = 35;
+    if (maxDist > 3) {
+      fee += Math.round((maxDist - 3) * 10);
+    }
+    return Math.min(fee, 120); // capped at ₹120 maximum
+  };
+
   const getPromoDiscount = () => (promoApplied ? Math.round(getSubtotal() * 0.15) : 0);
   const getTotal = () => getSubtotal() + getGST() + getDeliveryFee() - getPromoDiscount();
 
@@ -600,6 +669,7 @@ export default function App() {
     setOrderedDelivery(getDeliveryFee());
     setOrderedGST(getGST());
     setOrderedDiscount(getPromoDiscount());
+    setOrderedDistance(getCartMaxDistance());
     setOrderedTotal(getTotal());
     setOrderedPromo(promoApplied);
     // Open the customer details modal
@@ -1839,7 +1909,7 @@ export default function App() {
                         <span>₹{orderedGST}</span>
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span>Delivery Fee:</span>
+                        <span>Delivery Fee ({orderedDistance} km):</span>
                         <span>₹{orderedDelivery}</span>
                       </div>
                     </div>
@@ -1950,7 +2020,7 @@ export default function App() {
                       <span>₹{orderedGST}</span>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <span>Delivery Fee:</span>
+                      <span>Delivery Fee ({orderedDistance} km):</span>
                       <span>₹{orderedDelivery}</span>
                     </div>
                   </div>
