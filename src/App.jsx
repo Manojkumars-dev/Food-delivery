@@ -457,6 +457,25 @@ export default function App() {
   const [orderedTotal, setOrderedTotal] = useState(0);
   const [orderedPromo, setOrderedPromo] = useState(false);
 
+  // Helper functions to group origins of ordered dishes
+  const getRestaurantHub = (restaurantName) => {
+    if (!restaurantName) return 'Bengaluru';
+    const loc = RESTAURANT_LOCATIONS.find(
+      (r) =>
+        r.name.toLowerCase().includes(restaurantName.toLowerCase()) ||
+        restaurantName.toLowerCase().includes(r.name.toLowerCase())
+    );
+    return loc ? loc.hub : 'Bengaluru';
+  };
+
+  const getCartOrigins = () => {
+    const uniqueRests = [...new Set(orderedItems.map((item) => item.restaurant))];
+    return uniqueRests.map((rest) => ({
+      name: rest,
+      hub: getRestaurantHub(rest)
+    }));
+  };
+
   // Rotating Trivia Feed Logic
   useEffect(() => {
     const interval = setInterval(() => {
@@ -1759,13 +1778,35 @@ export default function App() {
                       />
                     </div>
                   </div>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '11px', fontWeight: 600, color: 'var(--color-muted-gray)', marginBottom: '4px' }}>DELIVERY DROP LOCATION</label>
+                    <textarea
+                      required
+                      rows={2}
+                      placeholder="Enter your complete drop address (building, street, layout, etc.)"
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                      style={{ width: '100%', padding: '8px 12px', border: '1px solid var(--color-ink)', borderRadius: '4px', fontFamily: 'var(--font-geist)', fontSize: '14px', resize: 'none' }}
+                    />
+                  </div>
                 </div>
 
                 {/* Invoice Summary inside details box */}
                 <div style={{ backgroundColor: 'var(--color-cream)', border: '1px solid var(--color-ink)', padding: '16px', borderRadius: '4px', marginBottom: '20px' }}>
                   <span style={{ fontSize: '11px', fontWeight: 600, color: 'var(--color-muted-gray)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>Ooru Invoice Summary</span>
                   
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: '10px', fontSize: '13px' }}>
+                  {/* Preparing Kitchen Origin Details */}
+                  <div style={{ borderBottom: '1px solid var(--color-rule)', paddingBottom: '8px', marginBottom: '8px', fontSize: '12px' }}>
+                    <span style={{ fontSize: '9px', fontWeight: 600, color: 'var(--color-muted-gray)', letterSpacing: '0.05em' }}>FOOD ORIGINATING FROM</span>
+                    {getCartOrigins().map(origin => (
+                      <div key={origin.name} style={{ display: 'flex', justifyContent: 'space-between', marginTop: '4px' }}>
+                        <span>🏢 <b>{origin.name}</b></span>
+                        <span>📍 {origin.hub}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '13px' }}>
                     {orderedItems.map(item => (
                       <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <span>{item.name} (x{item.qty})</span>
@@ -1837,7 +1878,18 @@ export default function App() {
                     <div><b>Name:</b> {customerName}</div>
                     <div><b>Mobile:</b> {mobileNumber}</div>
                     <div><b>Gmail:</b> {emailAddress}</div>
-                    <div><b>Address:</b> {address}</div>
+                    <div><b>Drop Location:</b> {address}</div>
+                  </div>
+
+                  {/* Preparing Kitchen Origin Details */}
+                  <div style={{ borderTop: '1px dashed var(--color-rule)', paddingTop: '8px', marginTop: '8px', fontSize: '12px' }}>
+                    <span style={{ fontSize: '9px', fontWeight: 600, color: 'var(--color-muted-gray)', letterSpacing: '0.05em' }}>FOOD COMING FROM</span>
+                    {getCartOrigins().map(origin => (
+                      <div key={origin.name} style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2px' }}>
+                        <span>🏢 {origin.name}</span>
+                        <span>📍 {origin.hub}</span>
+                      </div>
+                    ))}
                   </div>
 
                   {/* Items list */}
